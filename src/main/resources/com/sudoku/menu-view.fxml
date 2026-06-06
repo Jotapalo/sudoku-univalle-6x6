@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.sudoku.view.AnimatedSudokuBoardBackground?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sudoku.controller.MenuController"
+            styleClass="menu-root">
+
+    <center>
+        <StackPane fx:id="menuStack" styleClass="menu-center">
+            <AnimatedSudokuBoardBackground fx:id="animatedBoard" maxWidth="Infinity" maxHeight="Infinity" StackPane.alignment="CENTER"/>
+            <VBox spacing="18" alignment="CENTER" styleClass="menu-overlay" maxWidth="420" pickOnBounds="false" StackPane.alignment="CENTER">
+                <padding>
+                    <Insets top="40" right="24" bottom="40" left="24"/>
+                </padding>
+                <Label text="Sudoku36" styleClass="menu-title"/>
+                <Label text="Rompecabezas numérico · Filas, columnas y bloques 2×3" styleClass="menu-subtitle"/>
+                <Button text="Iniciar juego" onAction="#handleStartGame" styleClass="menu-primary-button" defaultButton="true"/>
+                <Button text="Instrucciones" onAction="#handleInstructions" styleClass="menu-secondary-button"/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>
