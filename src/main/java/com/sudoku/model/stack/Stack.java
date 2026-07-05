@@ -22,6 +22,11 @@ public class Stack<T> implements IStack<T> {
     /** Number of elements currently on the stack. */
     private int size;
 
+    /**
+     * Pushes an element onto the top of the stack.
+     *
+     * @param item element to push
+     */
     @Override
     public void push(T item) {
         Node<T> node = new Node<>(item);
@@ -30,6 +35,12 @@ public class Stack<T> implements IStack<T> {
         size++;
     }
 
+    /**
+     * Removes and returns the top element.
+     *
+     * @return removed element
+     * @throws IllegalStateException if the stack is empty
+     */
     @Override
     public T pop() {
         if (isEmpty()) {
@@ -41,6 +52,12 @@ public class Stack<T> implements IStack<T> {
         return data;
     }
 
+    /**
+     * Returns, but does not remove, the top element.
+     *
+     * @return top element
+     * @throws IllegalStateException if the stack is empty
+     */
     @Override
     public T peek() {
         if (isEmpty()) {
@@ -49,16 +66,29 @@ public class Stack<T> implements IStack<T> {
         return top.data;
     }
 
+    /**
+     * Checks whether the stack contains no elements.
+     *
+     * @return {@code true} if the stack is empty
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Returns the number of elements currently on the stack.
+     *
+     * @return stack size
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Removes all elements from the stack.
+     */
     @Override
     public void clear() {
         top = null;

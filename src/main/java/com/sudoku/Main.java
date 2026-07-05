@@ -10,8 +10,7 @@ import javafx.stage.Stage;
  * <p>
  * On launch, only the menu {@link com.sudoku.view.MenuStage} is shown. The game window is
  * opened later from {@link com.sudoku.controller.MenuController}. {@link Platform#setImplicitExit(boolean)}
- * is set to {@code false} so hiding the menu while switching to the game stage does not
- * terminate the JVM when no primary stage owns the remaining windows.
+ * is set to {@code true} so the JVM exits when the last visible window is closed.
  * </p>
  */
 public class Main extends Application {

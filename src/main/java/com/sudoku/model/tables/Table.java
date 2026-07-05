@@ -40,6 +40,12 @@ public class Table<K, V> implements ITable<K, V> {
         entries = new Entry[INITIAL_CAPACITY];
     }
 
+    /**
+     * Associates the given value with the given key, replacing any existing value.
+     *
+     * @param key   key to store
+     * @param value value to associate with the key
+     */
     @Override
     public void put(K key, V value) {
         int index = findIndex(key);
@@ -51,12 +57,24 @@ public class Table<K, V> implements ITable<K, V> {
         entries[size++] = new Entry<>(key, value);
     }
 
+    /**
+     * Returns the value associated with the given key.
+     *
+     * @param key lookup key
+     * @return associated value, or {@code null} if the key is not present
+     */
     @Override
     public V get(K key) {
         int index = findIndex(key);
         return index >= 0 ? entries[index].value : null;
     }
 
+    /**
+     * Removes the entry for the given key.
+     *
+     * @param key key to remove
+     * @return removed value, or {@code null} if the key was not present
+     */
     @Override
     public V remove(K key) {
         int index = findIndex(key);
@@ -70,21 +88,40 @@ public class Table<K, V> implements ITable<K, V> {
         return value;
     }
 
+    /**
+     * Checks whether the table contains the given key.
+     *
+     * @param key key to test
+     * @return {@code true} if the key exists in the table
+     */
     @Override
     public boolean containsKey(K key) {
         return findIndex(key) >= 0;
     }
 
+    /**
+     * Checks whether the table contains no entries.
+     *
+     * @return {@code true} if the table is empty
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Returns the number of stored entries.
+     *
+     * @return entry count
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Removes all entries from the table.
+     */
     @Override
     public void clear() {
         for (int i = 0; i < size; i++) {

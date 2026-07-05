@@ -29,6 +29,11 @@ public class Dequeue<T> implements IDequeue<T> {
     /** Element count. */
     private int size;
 
+    /**
+     * Inserts an element at the front of the deque.
+     *
+     * @param item element to insert
+     */
     @Override
     public void addFirst(T item) {
         Node<T> node = new Node<>(item);
@@ -42,6 +47,11 @@ public class Dequeue<T> implements IDequeue<T> {
         size++;
     }
 
+    /**
+     * Inserts an element at the back of the deque.
+     *
+     * @param item element to insert
+     */
     @Override
     public void addLast(T item) {
         Node<T> node = new Node<>(item);
@@ -55,6 +65,12 @@ public class Dequeue<T> implements IDequeue<T> {
         size++;
     }
 
+    /**
+     * Removes and returns the front element.
+     *
+     * @return removed front element
+     * @throws IllegalStateException if the deque is empty
+     */
     @Override
     public T removeFirst() {
         if (isEmpty()) {
@@ -71,6 +87,12 @@ public class Dequeue<T> implements IDequeue<T> {
         return data;
     }
 
+    /**
+     * Removes and returns the rear element.
+     *
+     * @return removed rear element
+     * @throws IllegalStateException if the deque is empty
+     */
     @Override
     public T removeLast() {
         if (isEmpty()) {
@@ -87,6 +109,12 @@ public class Dequeue<T> implements IDequeue<T> {
         return data;
     }
 
+    /**
+     * Returns, but does not remove, the front element.
+     *
+     * @return front element
+     * @throws IllegalStateException if the deque is empty
+     */
     @Override
     public T peekFirst() {
         if (isEmpty()) {
@@ -95,6 +123,12 @@ public class Dequeue<T> implements IDequeue<T> {
         return head.data;
     }
 
+    /**
+     * Returns, but does not remove, the rear element.
+     *
+     * @return rear element
+     * @throws IllegalStateException if the deque is empty
+     */
     @Override
     public T peekLast() {
         if (isEmpty()) {
@@ -103,16 +137,29 @@ public class Dequeue<T> implements IDequeue<T> {
         return tail.data;
     }
 
+    /**
+     * Checks whether the deque contains no elements.
+     *
+     * @return {@code true} if the deque is empty
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Returns the number of elements currently stored in the deque.
+     *
+     * @return element count
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Removes all elements from the deque.
+     */
     @Override
     public void clear() {
         head = null;

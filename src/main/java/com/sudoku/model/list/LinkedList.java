@@ -28,6 +28,11 @@ public class LinkedList<T> implements IList<T> {
     /** Cached element count for O(1) {@link #size()}. */
     private int size;
 
+    /**
+     * Appends an element to the end of the list.
+     *
+     * @param item element to append
+     */
     @Override
     public void add(T item) {
         Node<T> node = new Node<>(item);
@@ -43,6 +48,13 @@ public class LinkedList<T> implements IList<T> {
         size++;
     }
 
+    /**
+     * Inserts an element at the requested index.
+     *
+     * @param index insertion position
+     * @param item  element to insert
+     * @throws IndexOutOfBoundsException if the index is outside {@code [0, size]}
+     */
     @Override
     public void add(int index, T item) {
         validateIndexForInsert(index);
@@ -59,6 +71,13 @@ public class LinkedList<T> implements IList<T> {
         size++;
     }
 
+    /**
+     * Removes and returns the element at the requested index.
+     *
+     * @param index removal position
+     * @return removed element
+     * @throws IndexOutOfBoundsException if the index is outside {@code [0, size - 1]}
+     */
     @Override
     public T remove(int index) {
         validateIndex(index);
@@ -75,6 +94,12 @@ public class LinkedList<T> implements IList<T> {
         return removed;
     }
 
+    /**
+     * Removes the first matching element from the list.
+     *
+     * @param item element to remove
+     * @return {@code true} if an element was removed
+     */
     @Override
     public boolean remove(T item) {
         if (head == null) {
@@ -97,21 +122,44 @@ public class LinkedList<T> implements IList<T> {
         return false;
     }
 
+    /**
+     * Returns the element at the requested index.
+     *
+     * @param index zero-based position
+     * @return element at that index
+     * @throws IndexOutOfBoundsException if the index is outside {@code [0, size - 1]}
+     */
     @Override
     public T get(int index) {
         return nodeAt(index).data;
     }
 
+    /**
+     * Returns the current number of elements.
+     *
+     * @return list size
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Checks whether the list contains no elements.
+     *
+     * @return {@code true} if the list is empty
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Checks whether the list contains the specified element.
+     *
+     * @param item element to look for
+     * @return {@code true} if the list contains the element
+     */
     @Override
     public boolean contains(T item) {
         Node<T> current = head;
@@ -124,6 +172,9 @@ public class LinkedList<T> implements IList<T> {
         return false;
     }
 
+    /**
+     * Removes all elements from the list.
+     */
     @Override
     public void clear() {
         head = null;

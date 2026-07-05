@@ -42,6 +42,12 @@ public class Position {
         return column;
     }
 
+    /**
+     * Compares this position with another object.
+     *
+     * @param obj object to compare against
+     * @return {@code true} if the other object is a {@code Position} with the same row and column
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -53,11 +59,21 @@ public class Position {
         return row == other.row && column == other.column;
     }
 
+    /**
+     * Returns a hash code derived from the row and column values.
+     *
+     * @return hash code for this position
+     */
     @Override
     public int hashCode() {
         return Objects.hash(row, column);
     }
 
+    /**
+     * Returns a readable representation of this position.
+     *
+     * @return coordinates in the form {@code (row, column)}
+     */
     @Override
     public String toString() {
         return "(" + row + ", " + column + ")";
