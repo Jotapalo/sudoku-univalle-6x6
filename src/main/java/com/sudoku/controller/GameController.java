@@ -4,6 +4,7 @@ import com.sudoku.model.Board;
 import com.sudoku.model.Cell;
 import com.sudoku.model.Game;
 import com.sudoku.model.Hint;
+import com.sudoku.model.StatisticsManager;
 import com.sudoku.view.GameTimer;
 import com.sudoku.view.MenuStage;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -409,6 +411,7 @@ public class GameController implements Initializable {
      */
     private void showVictoryDialog() {
         String time = gameTimer.formatElapsedDetailed();
+        saveStatistics();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("¡Victoria!");
@@ -426,6 +429,19 @@ public class GameController implements Initializable {
         } else {
             returnToMenu();
         }
+    }
+
+    /**
+     * Persists the completed-game statistics to the text file.
+     */
+    private void saveStatistics() {
+        StatisticsManager.recordCompletedGame(
+                new StatisticsManager.GameResult(
+                        LocalDateTime.now(),
+                        gameTimer.getElapsedMs(),
+                        game.getHintsUsed()
+                )
+        );
     }
 
     /**
