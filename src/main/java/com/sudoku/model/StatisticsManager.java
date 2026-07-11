@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.OptionalLong;
 
 /**
  * Persists simple game statistics to a plain text file.
@@ -71,6 +72,30 @@ public class StatisticsManager {
      */
     public static Path getStatsFile() {
         return STATS_FILE;
+    }
+
+    /**
+     * Reads the current best time from the statistics file if it exists.
+     *
+     * @return best time in milliseconds, or empty if no statistics file is available yet
+     */
+    public static OptionalLong readBestTimeMs() {
+        try {
+            if (!Files.exists(STATS_FILE)) {
+                return OptionalLong.empty();
+            }
+
+            List<String> lines = Files.readAllLines(STATS_FILE, StandardCharsets.UTF_8);
+            for (String line : lines) {
+                if (line.startsWith("Best time (ms): ")) {
+                    long value = parseLong(line);
+                    return value > 0 ? OptionalLong.of(value) : OptionalLong.empty();
+                }
+            }
+        } catch (IOException ignored) {
+            // If stats cannot be read, the menu simply won't show the record.
+        }
+        return OptionalLong.empty();
     }
 
     private static StatisticsSnapshot readSnapshot() throws IOException {

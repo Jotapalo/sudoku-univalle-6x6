@@ -22,6 +22,7 @@
                 </padding>
                 <Label text="Sudoku36" styleClass="menu-title"/>
                 <Label text="Rompecabezas numérico · Filas, columnas y bloques 2×3" styleClass="menu-subtitle"/>
+                <Label fx:id="recordLabel" text="Record: sin partidas guardadas" styleClass="menu-record"/>
                 <Button text="Iniciar juego" onAction="#handleStartGame" styleClass="menu-primary-button" defaultButton="true"/>
                 <Button text="Instrucciones" onAction="#handleInstructions" styleClass="menu-secondary-button"/>
             </VBox>
