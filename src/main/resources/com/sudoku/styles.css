@@ -186,6 +186,13 @@
     -fx-wrap-text: true;
 }
 
+.menu-record {
+    -fx-text-fill: #fde68a;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
 .menu-primary-button {
     -fx-background-color: linear-gradient(to bottom, #facc15, #ea580c 55%, #dc2626);
     -fx-text-fill: #450a0a;

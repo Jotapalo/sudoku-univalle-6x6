@@ -4,11 +4,14 @@ import com.sudoku.view.AnimatedSudokuBoardBackground;
 import com.sudoku.view.GameStage;
 import com.sudoku.view.InstructionsStage;
 import com.sudoku.view.MenuStage;
+import com.sudoku.model.StatisticsManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.OptionalLong;
 
 /**
  * FXML controller for the main menu ({@code menu-view.fxml}).
@@ -26,6 +29,9 @@ public class MenuController implements Initializable {
     @FXML
     private AnimatedSudokuBoardBackground animatedBoard;
 
+    @FXML
+    private Label recordLabel;
+
     /**
      * Starts the background animation and binds its preferred size to {@link #menuStack}.
      */
@@ -40,6 +46,8 @@ public class MenuController implements Initializable {
         } else if (animatedBoard != null) {
             animatedBoard.startAnimation();
         }
+
+        updateRecordLabel();
     }
 
     /**
@@ -64,5 +72,26 @@ public class MenuController implements Initializable {
     private void handleInstructions() {
         InstructionsStage.getInstance().show();
         InstructionsStage.getInstance().toFront();
+    }
+
+    private void updateRecordLabel() {
+        if (recordLabel == null) {
+            return;
+        }
+
+        OptionalLong bestTime = StatisticsManager.readBestTimeMs();
+        if (bestTime.isPresent()) {
+            recordLabel.setText("Record: " + formatTime(bestTime.getAsLong()));
+        } else {
+            recordLabel.setText("Record: sin partidas guardadas");
+        }
+    }
+
+    private String formatTime(long elapsedMs) {
+        long totalSeconds = elapsedMs / 1000L;
+        long minutes = totalSeconds / 60L;
+        long seconds = totalSeconds % 60L;
+        long centiseconds = (elapsedMs % 1000L) / 10L;
+        return String.format("%02d:%02d.%02d", minutes, seconds, centiseconds);
     }
 }
